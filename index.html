@@ -42,6 +42,9 @@
         chicken.style.top = '250px';
         chicken.style.left = '250px';
         
+        var colors = ['yellow', 'red', 'blue', 'brown', 'purple', 'green', 'pink'];
+        var colorIdx = 0;
+
         var active = false;
         var currentX;
         var currentY;
@@ -101,6 +104,18 @@
             el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         }
 
+        function changeColor() {
+            if (colorIdx < colors.length) {
+                colorIdx++
+            }
+            else {
+                colorIdx = 0;
+            }
+
+            chicken.style.backgroundColor = colors[colorIdx];
+            // chicken.style.backgroundColor = colors[colorIdx];
+        }
+
         window.addEventListener('keydown', function(evt) {         
          if (evt.keyCode === 38) { // up
             console.log(chicken.style.top);
@@ -149,6 +164,9 @@
              console.log('width: ', chicken.style.width);
              chicken.style.width = (width + 20) + 'px';
              chicken.style.height = (height + 20) + 'px'; 
+         }
+         else if (evt.keyCode === 32) { // space.
+            changeColor();
          }
         }
         
