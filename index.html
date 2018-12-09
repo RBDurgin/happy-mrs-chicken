@@ -37,9 +37,69 @@
 
     <script type="text/javascript">    
         var chicken = document.getElementsByClassName('chicken')[0];
+        var container = document.getElementsByClassName('game-board')[0];
         var scale = 1.0;
         chicken.style.top = '250px';
         chicken.style.left = '250px';
+        
+        var active = false;
+        var currentX;
+        var currentY;
+        var initialX;
+        var initialY;
+        var xOffset = 0;
+        var yOffset = 0;
+
+        container.addEventListener("touchstart", dragStart, false);
+        container.addEventListener("touchend", dragEnd, false);
+        container.addEventListener("touchmove", drag, false);
+        container.addEventListener("mousemove", drag, false);
+        container.addEventListener("mousedown", dragStart, false);
+        container.addEventListener("mouseup", dragEnd, false);
+
+        function dragStart(e) {
+            if (e.type === "touchstart") {
+                initialX = e.touches[0].clientX - xOffset;
+                initialY = e.touches[0].clientY - yOffset;
+            } else {
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
+            }
+
+            if (e.target === chicken) {
+                active = true;
+            }
+        }
+
+        function drag(e) {
+            if (active) {
+                e.preventDefault();
+
+                if (e.type === "touchmove") {
+                    currentX = e.touches[0].clientX - initialX;
+                    currentY = e.touches[0].clientY - initialY;
+                } else {
+                    currentX = e.clientX - initialX;
+                    currentY = e.clientY - initialY;
+                }
+
+                xOffset = currentX;
+                yOffset = currentY;
+
+                setTranslate(currentX, currentY, chicken);
+            }
+        }
+
+        function dragEnd(e) {
+            initialX = currentX;
+            initialY = currentY;
+
+            active = false;
+        }
+
+        function setTranslate(xPos, yPos, el) {
+            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        }
 
         window.addEventListener('keydown', function(evt) {         
          if (evt.keyCode === 38) { // up
@@ -90,7 +150,9 @@
              chicken.style.width = (width + 20) + 'px';
              chicken.style.height = (height + 20) + 'px'; 
          }
-        });
+        }
+        
+        );
         
     </script>
 </body>
