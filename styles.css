@@ -1,0 +1,229 @@
+.game-board {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 440px;
+    height: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translate(-50%, -50%);
+    background-color: lightblue;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 15px 10px -15px rgba(0, 0, 0, .9);
+}
+
+.chicken {
+    position: relative;
+    display: block;
+    top: 25%;
+    left: 25%;
+    width: 50px;
+    height: 50px;
+    transition: transform 1s;
+    /* margin: auto auto; */
+    transform: translate(50%, 50%);
+    transition: all 1s;
+    background-color: yellow;
+    border: 2px solid black;
+    border-radius: 50%;
+    z-index: initial;
+}
+
+.hair {
+    width: 15px;
+    height: 8px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: red;
+    z-index: -10;
+}
+
+.hair-1 {
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    transform: rotate(75deg);
+}
+
+.hair-2 {
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: 14px;
+    transform: rotate(90deg);
+}
+
+.hair-3 {
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    transform: rotate(115deg);
+}
+
+.beak {
+    position: absolute;
+    top: 25%;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid yellow;
+    z-index: -1;
+}
+
+.beak::before {
+    position: absolute;
+    display: block;
+    left: 4px;
+    top: -12px;
+    width: 1px;
+    height: 1px;
+    border-top: 15px solid black;
+    transform: rotate(45deg);
+    content: '';
+    z-index: -1;
+}
+
+.beak::after {
+    position: absolute;
+    display: block;
+    left: 5px;
+    top: -2px;
+    width: 1px;
+    height: 1px;
+    border-top: 15px solid black;
+    transform: rotate(-45deg);
+    content: '';
+    z-index: -1;
+}
+
+.eye {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    border: 1px solid;
+    background-color: black;
+}
+
+.tail {
+    width: 15px;
+    height: 8px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: yellow;
+    z-index: -10;
+}
+
+.tail-1 {
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    right: -15px;
+    transform: rotate(135deg);
+}
+
+.tail-2 {
+    display: block;
+    position: absolute;
+    bottom: 15px;
+    right: -15px;
+}
+
+.tail-3 {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    right: -15px;
+    transform: rotate(200deg);
+}
+
+.leg {
+    display: block;
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-top: 15px solid black;
+}
+
+.left-leg {
+    top: 45px;
+    left: 7px;
+}
+
+.right-leg {
+    top: 45px;
+    right: 7px;
+}
+
+.leg-toe-1 {
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: -6px;
+    width: 2px;
+    height: 2px;
+    transform: rotate(45deg);
+    border-top: 15px solid black;
+}
+
+.leg-toe-2 {
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: 0px;
+    width: 2px;
+    height: 2px;
+    border-top: 15px solid black;
+}
+
+.leg-toe-3 {
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: 6px;
+    width: 2px;
+    height: 2px;
+    transform: rotate(-45deg);
+    border-top: 15px solid black;
+}
+
+/* 
+.beak-top {
+    display: block;
+    position: absolute;
+    top: 17px;
+    left: -15px;
+    width: 20px;
+    height: 1px;
+    transform: rotate(-45deg);
+    border-top: 2px solid black;
+}
+
+.beak-middle {
+    display: block;
+    position: absolute;
+    top: 24px;
+    left: -10px;
+    width: 10px;
+    height: 1px;
+    border-top: 2px solid black;
+}
+
+.beak-bottom {
+    display: block;
+    position: absolute;
+    top: 31px;
+    left: -15px;
+    width: 20px;
+    height: 1px;
+    transform: rotate(45deg);
+    border-top: 2px solid black;
+} */
