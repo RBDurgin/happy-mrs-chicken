@@ -24,7 +24,7 @@
         }
     ],
     "orientation": "landscape",
-    "start_url": "/",
+    "start_url": "/happy-mrs-chicken",
     "background_color": "#add8e6",
     "display": "standalone",
     "scope": "/",
