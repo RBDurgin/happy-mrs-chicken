@@ -58,20 +58,9 @@
                         console.error('Registration Failed', err);
                     });
             });
-        }
-        else {
-            // Just load main js by hand.
-            addScript('./mrs-chicken.js');
-        }
-
-        function addScript(src, callback) {
-            var s = document.createElement('script');
-            s.setAttribute('src', src);
-            s.onload = callback;
-            document.body.appendChild(s);
-        }
+        }       
     </script>
 
-    <!-- script type="text/javascript" src="./mrs-chicken.js"></script> -->
+    <script type="text/javascript" src="./mrs-chicken.js"></script>
 </body>
 </html>
