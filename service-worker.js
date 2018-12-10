@@ -4,6 +4,8 @@ self.addEventListener("install", function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll([
+          "/",
+          "/happy-mrs-chicken",
           "./images/icons-192.png",
           "./images/icons-256.png",
           "./styles.css", 
@@ -21,6 +23,7 @@ self.addEventListener("activate", function(event) {
 });
 
 self.addEventListener("fetch", function(event) {
+  console.loog("fetch()", event);
   event.respondWith(
     caches.match(event.request).then(function(response) {
       return response || fetch(event.request);
