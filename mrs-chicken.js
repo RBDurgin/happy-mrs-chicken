@@ -23,7 +23,6 @@ container.addEventListener("mousedown", dragStart, false);
 container.addEventListener("mouseup", dragEnd, false);
 
 function dragStart(e) {
-  console.log("dragStart()");
   if (e.type === "touchstart") {
     initialX = e.touches[0].clientX - xOffset;
     initialY = e.touches[0].clientY - yOffset;
@@ -38,7 +37,6 @@ function dragStart(e) {
 }
 
 function drag(e) {
-  console.log("drag()");
   // e.preventDefault();
   if (active) {
     e.preventDefault();
@@ -59,7 +57,6 @@ function drag(e) {
 }
 
 function dragEnd(e) {
-  console.log("dragEnd()");
   initialX = currentX;
   initialY = currentY;
 
@@ -78,7 +75,6 @@ function changeColor() {
   }
 
   chicken.style.backgroundColor = colors[colorIdx];
-  // chicken.style.backgroundColor = colors[colorIdx];
 }
 
 window.addEventListener("keydown", function(evt) {
