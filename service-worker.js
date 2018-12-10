@@ -1,7 +1,8 @@
+const CACHE_NAME = 'HAPPY_CHICKEN';
 // Listen for install event, set callback
 self.addEventListener("install", function(event) {
   event.waitUntil(
-    caches.open(cacheName).then(function(cache) {
+    caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll([
           "/images/icons-192.png",
           "/images/icons-256.png",
