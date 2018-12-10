@@ -86,20 +86,16 @@ window.addEventListener("keydown", function(evt) {
     chicken.style.top = top - 25 + "px";
   } else if (evt.keyCode === 39) {
     // right
-    console.log(chicken.style.left);
-
     var left = parseInt(chicken.style.left);
     chicken.style.left = left + 25 + "px";
     chicken.style.transform = "scale(-1, 1)";
   } else if (evt.keyCode === 37) {
-    // left
-    console.log(chicken.style.left);
+    // left    
     var left = parseInt(chicken.style.left);
     chicken.style.left = left - 25 + "px";
     chicken.style.transform = "scale(1, 1)";
   } else if (evt.keyCode === 40) {
-    // down
-    console.log(chicken.style.top);
+    // down    
     var top = parseInt(chicken.style.top);
     chicken.style.top = top + 25 + "px";
   } else if (evt.keyCode === 82) {
@@ -119,8 +115,7 @@ window.addEventListener("keydown", function(evt) {
 
     //chicken.transform = HJNNJ'scale(' + scale + ', ' + scale + ')';
     var width = parseInt(chicken.offsetWidth);
-    var height = parseInt(chicken.offsetHeight);
-    console.log("width: ", chicken.style.width);
+    var height = parseInt(chicken.offsetHeight);    
     chicken.style.width = width + 20 + "px";
     chicken.style.height = height + 20 + "px";
   } else if (evt.keyCode === 32) {
