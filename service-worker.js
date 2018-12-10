@@ -6,12 +6,13 @@ self.addEventListener("install", function(event) {
       return cache.addAll([
         "/happy-mrs-chicken",
         "/happy-mrs-chicken/",
-        "./images/icons-192.png",
-        "./images/icons-256.png",
-        "./styles.css",
-        "./mrs-chicken.js",
-        "./index.html",
-        "./404.html"
+        "happy-mrs-chicken/",
+        "images/icons-192.png",
+        "images/icons-256.png",
+        "styles.css",
+        "mrs-chicken.js",
+        "index.html",
+        "404.html"
       ]);
     })
   );
@@ -35,7 +36,7 @@ self.addEventListener("fetch", function(event) {
         console.log("Network request for ", event.request.url);
         return fetch(event.request).then(response => {
           if (response.status === 404) {
-            return caches.match("pages/404.html");
+            return caches.match("404.html");
           }
           return caches.open(staticCacheName).then(cache => {
             cache.put(event.request.url, response.clone());
