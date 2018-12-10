@@ -36,7 +36,7 @@ self.addEventListener("fetch", function(event) {
           if (response.status === 404) {
             return caches.match("404.html");
           }
-          return caches.open(staticCacheName).then(cache => {
+          return caches.open(CACHE_NAME).then(cache => {
             cache.put(event.request.url, response.clone());
             return response;
           });
