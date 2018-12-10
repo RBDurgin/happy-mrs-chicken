@@ -4,11 +4,11 @@ self.addEventListener("install", function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll([
-          "/images/icons-192.png",
-          "/images/icons-256.png",
-          "/styles.css", 
-          "/mrs-chicken.js", 
-          "/index.html"]);
+          "./images/icons-192.png",
+          "./images/icons-256.png",
+          "./styles.css", 
+          "./mrs-chicken.js", 
+          "./index.html"]);
     })
   );
   console.log("Happy Mrs. Chicken Registered!");
