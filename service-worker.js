@@ -9,7 +9,8 @@ self.addEventListener("install", function(event) {
           "./styles.css", 
           "./mrs-chicken.js", 
           "./index.html",
-          "./"]);
+          "./",
+          "/"]);
     })
   );
   console.log("Happy Mrs. Chicken Registered!");
