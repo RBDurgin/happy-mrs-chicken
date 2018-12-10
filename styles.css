@@ -3,6 +3,7 @@
     left: 50%;
     top: 50%;
     width: 440px;
+    max-width: 100%;
     height: 440px;
     margin-left: auto;
     margin-right: auto;
@@ -194,6 +195,14 @@
     height: 2px;
     transform: rotate(-45deg);
     border-top: 15px solid black;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+
 }
 
 /* 
