@@ -18,15 +18,15 @@
             "sizes": "512x512" 
         },
         { 
-            "src": "./favicon.ico", 
+            "src": "./images/favicon.ico", 
             "type": "image/png", 
             "sizes": "16x16" 
         }
     ],
     "orientation": "landscape",
-    "start_url": "/happy-mrs-chicken",
+    "start_url": "./index.html",
     "background_color": "#add8e6",
     "display": "standalone",
-    "scope": "/",
+    "scope": "./",
     "theme_color": "#add8e6"
 }
