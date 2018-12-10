@@ -11,8 +11,8 @@ self.addEventListener("install", function(event) {
           "./styles.css", 
           "./mrs-chicken.js", 
           "./index.html",
-          "./",
-          "/"]);
+          "./404.html"
+        ]);
     })
   );
   console.log("Happy Mrs. Chicken Registered!");
@@ -25,8 +25,17 @@ self.addEventListener("activate", function(event) {
 self.addEventListener("fetch", function(event) {
   console.log("fetch()", event);
   event.respondWith(
-    caches.match(event.request).then(function(response) {
+    caches.match(event.request).then(function(response) {      
       return fetch(event.request) || response;
+    }).then(response => {
+        if (response.status === 404) {
+            return caches.match('404.html');
+        }
+        return caches.open(CACHE_NAME)
+        .then(cache => {
+            cache.put(event.request.url, response.clone());
+            return response;
+        });
     })
   );
 });
