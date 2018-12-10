@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Happy Mrs. Chicken</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />    
 </head>
 <body>
@@ -35,9 +36,35 @@
         </div>
 
         <div class="egg">
-            
+
         </div>
     </div>
+
+    <script>
+        // Check for serviceworker support, then register our service worker.
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker is registered', registration)
+                    })
+                    .catch(err => {
+                        console.error('Registration Failed', err);
+                    });
+            });
+        }
+        else {
+            // Just load main js by hand.
+            addScript('./mrs-chicken.js');
+        }
+
+        function addScript(src, callback) {
+            var s = document.createElement('script');
+            s.setAttribute('src', src);
+            s.onload = callback;
+            document.body.appendChild(s);
+        }
+    </script>
 
     <script type="text/javascript" src="./mrs-chicken.js"></script>
 </body>
