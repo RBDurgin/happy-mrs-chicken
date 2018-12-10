@@ -10,7 +10,8 @@ self.addEventListener("install", function(event) {
         "styles.css",
         "mrs-chicken.js",
         "index.html",
-        "404.html"
+        "404.html",
+        "offline.html"
       ]);
     })
   );
@@ -21,6 +22,7 @@ self.addEventListener("activate", function(event) {
   console.log("Happy Mrs. Chicken Service Worker Activated!");
 });
 
+// Serve files from cache, if found, otherwise make a network request.
 self.addEventListener("fetch", function(event) {
   console.log("fetch()", event);
   event.respondWith(
