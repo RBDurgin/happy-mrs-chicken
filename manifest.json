@@ -24,9 +24,8 @@
         }
     ],
     "orientation": "landscape",
-    "start_url": "/happy_mrs_chicken/index.html",
+    "start_url": "./index.html",
     "background_color": "#add8e6",
     "display": "standalone",
-    "scope": "/happy_mrs_chicken/",
     "theme_color": "#add8e6"
 }

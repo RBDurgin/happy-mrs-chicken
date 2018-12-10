@@ -4,9 +4,7 @@ self.addEventListener("install", function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll([
-        "/happy-mrs-chicken",
-        "/happy-mrs-chicken/",
-        "happy-mrs-chicken/",
+        "/",
         "images/icons-192.png",
         "images/icons-256.png",
         "styles.css",
