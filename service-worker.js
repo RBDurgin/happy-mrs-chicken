@@ -23,7 +23,7 @@ self.addEventListener("activate", function(event) {
 });
 
 self.addEventListener("fetch", function(event) {
-  console.loog("fetch()", event);
+  console.log("fetch()", event);
   event.respondWith(
     caches.match(event.request).then(function(response) {
       return fetch(event.request) || response;
