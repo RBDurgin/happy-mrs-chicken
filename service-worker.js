@@ -45,7 +45,7 @@ self.addEventListener("fetch", function(event) {
       })
       .catch(error => {
         console.log("Error, ", error);
-        return caches.match("pages/offline.html");
+        return caches.match("offline.html");
       })
   );
 });
