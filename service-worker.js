@@ -8,7 +8,8 @@ self.addEventListener("install", function(event) {
           "./images/icons-256.png",
           "./styles.css", 
           "./mrs-chicken.js", 
-          "./index.html"]);
+          "./index.html",
+          "./"]);
     })
   );
   console.log("Happy Mrs. Chicken Registered!");
