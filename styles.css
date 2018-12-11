@@ -20,7 +20,7 @@ body, html {
 }
 
 .score-wrapper {
-    position: absolute;
+    position: fixed;
     top: 5px;
     right: 10px;
     color: white;
