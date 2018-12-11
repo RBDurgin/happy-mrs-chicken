@@ -1,8 +1,13 @@
 var chicken = document.getElementsByClassName("chicken")[0];
 var container = document.getElementsByClassName("game-board")[0];
+var originalEgg = document.getElementsByClassName("egg-original")[0];
+var scoreSpan = document.getElementsByClassName('score-value')[0];
+
 var scale = 1.0;
 chicken.style.top = "250px";
 chicken.style.left = "250px";
+originalEgg.style.top = "250px";
+originalEgg.style.left = "250px";
 
 var colors = ["yellow", "red", "blue", "brown", "purple", "green", "pink"];
 var colorIdx = 0;
@@ -14,6 +19,8 @@ var initialX;
 var initialY;
 var xOffset = 0;
 var yOffset = 0;
+var step = 25;
+var score = 0;
 
 container.addEventListener("touchstart", dragStart, false);
 container.addEventListener("touchend", dragEnd, false);
@@ -21,6 +28,7 @@ container.addEventListener("touchmove", drag, false);
 container.addEventListener("mousemove", drag, false);
 container.addEventListener("mousedown", dragStart, false);
 container.addEventListener("mouseup", dragEnd, false);
+container.addEventListener("dblclick", layEgg, false);
 
 function dragStart(e) {
   if (e.type === "touchstart") {
@@ -61,6 +69,21 @@ function dragEnd(e) {
   initialY = currentY;
 
   active = false;
+
+  var egg = document.getElementsByClassName("egg-original")[0];
+  console.log(egg);
+  var droppedEgg = egg.cloneNode();
+  droppedEgg.classList.remove("egg-original");
+  var x = currentX;
+  var y = currentY + 50;
+  console.log("evt.clientX: ", e.clientX, "evt.clientY:", e.clientY);
+  console.log("x:", x, " y:", y);
+  document.getElementsByClassName("game-board")[0].prepend(droppedEgg);
+  setTranslate(x, y, droppedEgg);
+  droppedEgg.style.transform += ' rotate(90deg)';
+  droppedEgg.style.display = "block";
+  score += 10;
+  scoreSpan.innerHTML = score;
 }
 
 function setTranslate(xPos, yPos, el) {
@@ -77,45 +100,52 @@ function changeColor() {
   chicken.style.backgroundColor = colors[colorIdx];
 }
 
+function layEgg(evt) {
+}
+
+function reset() {
+  chicken.style.top = "250px";
+  chicken.style.left = "250px";
+  chicken.style.width = "50px";
+  chicken.style.height = "50px";  
+}
+
 window.addEventListener("keydown", function(evt) {
   if (evt.keyCode === 38) {
     // up
     console.log(chicken.style.top);
     var top = parseInt(chicken.style.top);
-    console.log("top", top - 25 + "px");
-    chicken.style.top = top - 25 + "px";
+    console.log("top", top - step + "px");
+    chicken.style.top = top - step + "px";
   } else if (evt.keyCode === 39) {
     // right
     var left = parseInt(chicken.style.left);
-    chicken.style.left = left + 25 + "px";
+    chicken.style.left = left + step + "px";
     chicken.style.transform = "scale(-1, 1)";
   } else if (evt.keyCode === 37) {
-    // left    
+    // left
     var left = parseInt(chicken.style.left);
-    chicken.style.left = left - 25 + "px";
+    chicken.style.left = left - step + "px";
     chicken.style.transform = "scale(1, 1)";
   } else if (evt.keyCode === 40) {
-    // down    
+    // down
     var top = parseInt(chicken.style.top);
-    chicken.style.top = top + 25 + "px";
+    chicken.style.top = top + step + "px";
   } else if (evt.keyCode === 82) {
-    chicken.style.top = "150px";
-    chicken.style.left = "150px";
-    chicken.style.width = "50px";
-    chicken.style.height = "50px";
+    reset();
   } else if (evt.keyCode === 188) {
     scale -= 0.1;
     // chicken.transform = 'scale(' + scale + ', ' + scale + ')';
     var width = parseInt(chicken.offsetWidth);
     var height = parseInt(chicken.offsetHeight);
-    chicken.style.width = width - 20 + "px";
-    chicken.style.height = height - 20 + "px";
+    chicken.style.width = width - step + "px";
+    chicken.style.height = height - step + "px";
   } else if (evt.keyCode === 190) {
     scale += 0.1;
 
     //chicken.transform = HJNNJ'scale(' + scale + ', ' + scale + ')';
     var width = parseInt(chicken.offsetWidth);
-    var height = parseInt(chicken.offsetHeight);    
+    var height = parseInt(chicken.offsetHeight);
     chicken.style.width = width + 20 + "px";
     chicken.style.height = height + 20 + "px";
   } else if (evt.keyCode === 32) {
