@@ -16,7 +16,7 @@ self.addEventListener("install", function(event) {
       ]);
     }).catch(function(error) {
       console.error("Unable to cache resources:", error);
-    });
+    })
   );
   console.log("Happy Mrs. Chicken Registered!");
 });
