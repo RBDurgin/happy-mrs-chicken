@@ -31,7 +31,7 @@ self.addEventListener("fetch", function(event) {
   event.respondWith(
     caches
       .match(event.request)
-      .then(response => {
+      .then(function(response) {
         if (response) {
           console.log("Found ", event.request.url, " in cache");
           return response;
@@ -41,13 +41,13 @@ self.addEventListener("fetch", function(event) {
           if (response.status === 404) {
             return caches.match("404.html");
           }
-          return caches.open(CACHE_NAME).then(cache => {
+          return caches.open(CACHE_NAME).then(function(cache) {
             cache.put(event.request.url, response.clone());
             return response;
           });
         });
       })
-      .catch(error => {
+      .catch(function(error) {
         console.log("Error, ", error);
         return caches.match("offline.html");
       })
