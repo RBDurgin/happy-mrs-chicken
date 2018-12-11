@@ -4,17 +4,19 @@ self.addEventListener("install", function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll([
-        "images/icons-192.png",
-        "images/icons-256.png",
-        "images/splash-750x1334.png",
-        "styles.css",
-        "mrs-chicken.js",
-        "index.html",
-        "404.html",
-        "offline.html",
+        "/images/icons-192.png",
+        "/images/icons-256.png",
+        "/images/splash-750x1334.png",
+        "/styles.css",
+        "/mrs-chicken.js",
+        "/index.html",
+        "/404.html",
+        "/offline.html",
         "/"
       ]);
-    })
+    }).catch(function(error) {
+      console.error("Unable to cache resources:", error);
+    });
   );
   console.log("Happy Mrs. Chicken Registered!");
 });
