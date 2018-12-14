@@ -1,6 +1,6 @@
 body, html {
     position: fixed;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS', cursive, sans-serif;
 }
 
 .game-board {
@@ -231,14 +231,26 @@ body, html {
     z-index: -2;
 }
 
+.buttons {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    color: white;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.buttons button {
+    background-color: lightcyan;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    color: #cccccc;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
 @media (min-width: 768px) {}
 
-@media (min-width: 992px) {
-    .game-board {
-        height: 440px;
-        width: 440px;
-    }
-}
+@media (min-width: 992px) {}
 
 /* 
 .beak-top {
