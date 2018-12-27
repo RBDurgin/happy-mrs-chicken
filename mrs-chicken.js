@@ -26,6 +26,7 @@ let xOffset = 0;
 let yOffset = 0;
 let score = 0;
 let touchTimer = null;
+var rotate = 90;
 
 function setTranslate(xPos, yPos, el) {
   el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
@@ -159,7 +160,7 @@ container.addEventListener('longtouch', changeColor, false);
 window.addEventListener('keydown', (evt) => {
   const left = parseInt(chicken.style.left);
   const top = parseInt(chicken.style.top);
-
+  
   if (evt.keyCode === 38) {
     // up.
     chicken.style.top = `${top - STEP}px`;
@@ -193,5 +194,19 @@ window.addEventListener('keydown', (evt) => {
   } else if (evt.keyCode === 32) {
     // space.
     changeColor();
+  } else if (evt.keyCode === 69) {
+    const eggX = currentX;
+    const eggY = currentY + 50;
+    dropEgg(eggX, eggY);
+  } else if (evt.keyCode === 83) {
+    // Spin
+    if (rotate <= 180) {
+      rotate += 30;
+    } 
+    else {
+      rotate = 0;
+    }
+    setTranslate(currentX, currentY, chicken);
+    chicken.style.transform += ' rotate(' + rotate + 'deg)';
   }
 });
