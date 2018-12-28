@@ -200,7 +200,7 @@ window.addEventListener('keydown', (evt) => {
     dropEgg(eggX, eggY);
   } else if (evt.keyCode === 83) {
     // Spin
-    if (rotate <= 180) {
+    if (rotate <= 360) {
       rotate += 30;
     } 
     else {
