@@ -134,6 +134,20 @@ body, html {
     border-radius: 50%;
     border: 1px solid;
     background-color: black;
+    animation: squeeze 2.4s infinite;
+}
+
+@keyframes squeeze {
+    90% {
+        transform: none;
+        animation-timing-function: ease-in;
+    }
+    93% {
+        transform: translateY(3px) scaleY(0.8)
+    }
+    100% {
+        animation-timing-function: ease-out;
+    }
 }
 
 .tail {
