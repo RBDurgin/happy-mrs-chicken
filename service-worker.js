@@ -8,7 +8,7 @@ self.addEventListener("install", function(event) {
         "./images/icons-256.png",
         "./images/splash-750x1334.png",
         "./styles.css",
-        "./mrs-chicken.js",
+        "./dist/main.js",
         "./index.html",
         "./404.html",
         "./offline.html",

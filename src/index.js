@@ -1,6 +1,9 @@
+const SimplePeer = require('simple-peer');
+
 const STEP = 25;
 const LONG_TOUCH_DURATION = 500;
 const COLORS = ['yellow', 'red', 'blue', 'brown', 'purple', 'green', 'pink'];
+const CHICKENS = ['mrs-chicken', 'mr-chicken'];
 
 const chicken = document.getElementsByClassName('chicken')[0];
 const container = document.getElementsByClassName('game-board')[0];
@@ -8,6 +11,7 @@ const originalEgg = document.getElementsByClassName('egg-original')[0];
 const scoreSpan = document.getElementsByClassName('score-value')[0];
 const colorBtn = document.getElementsByClassName('color')[0];
 const resetBtn = document.getElementsByClassName('reset')[0];
+const changeChickenBtn = document.getElementsByClassName('change-chicken')[0];
 
 let scale = 1.0;
 chicken.style.top = '250px';
@@ -26,7 +30,53 @@ let xOffset = 0;
 let yOffset = 0;
 let score = 0;
 let touchTimer = null;
-var rotate = 90;
+let rotate = 90;
+let currentChicken = CHICKENS[0];
+
+const peer1 = new SimplePeer({ initiator: true });
+const peer2 = new SimplePeer();
+
+peer1.on('signal', (data) => {
+  // when peer1 has signaling data, give it to peer2 somehow
+  peer2.signal(data);
+});
+
+peer2.on('signal', (data) => {
+  // when peer2 has signaling data, give it to peer1 somehow
+  peer1.signal(data);
+});
+
+peer1.on('connect', () => {
+  // wait for 'connect' event before using the data channel
+  peer1.send('hey peer2, how is it going?');
+});
+
+peer2.on('data', (data) => {
+  // got a data channel message
+  console.log(`got a message from peer1: ${data}`);
+});
+
+function changeChicken() {
+  if (currentChicken === 'mrs-chicken') {
+    currentChicken = 'mr-chicken';
+    document.querySelectorAll('.mr-chicken ').forEach((el) => {
+      el.style.opacity = '1';
+    });
+    document.querySelectorAll('.mrs-chicken ').forEach((el) => {
+      el.style.opacity = '0';
+    });
+    changeChickenBtn.innerHTML = 'Mrs. Chicken';
+  } else if (currentChicken === 'mr-chicken') {
+    currentChicken = 'mrs-chicken';
+    document.querySelectorAll('.mr-chicken ').forEach((el) => {
+      el.style.opacity = '0';
+    });
+    document.querySelectorAll('.mrs-chicken ').forEach((el) => {
+      el.style.opacity = '1';
+    });
+    changeChickenBtn.innerHTML = 'Mr. Chicken';
+  }
+}
 
 function setTranslate(xPos, yPos, el) {
   el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
@@ -53,7 +103,7 @@ function dropEgg(x, y) {
   document.getElementsByClassName('game-board')[0].prepend(droppedEgg);
   setTranslate(x, y, droppedEgg);
   droppedEgg.style.transform += ' rotate(90deg)';
-  droppedEgg.style.display = 'block';
+  droppedEgg.style.opacity = 'block';
   incrementScore(10);
 }
 
@@ -72,6 +122,8 @@ function dragStart(e) {
   } else if (e.target === colorBtn) {
     e.preventDefault();
     changeColor();
+  } else if (e.target === changeChickenBtn) {
+    changeChicken();
   } else {
     if (e.type === 'touchstart') {
       initialX = e.touches[0].clientX - xOffset;
@@ -160,7 +212,7 @@ container.addEventListener('longtouch', changeColor, false);
 window.addEventListener('keydown', (evt) => {
   const left = parseInt(chicken.style.left);
   const top = parseInt(chicken.style.top);
-  
+
   if (evt.keyCode === 38) {
     // up.
     chicken.style.top = `${top - STEP}px`;
@@ -202,11 +254,10 @@ window.addEventListener('keydown', (evt) => {
     // Spin
     if (rotate <= 360) {
       rotate += 30;
-    } 
-    else {
+    } else {
       rotate = 0;
     }
     setTranslate(currentX, currentY, chicken);
-    chicken.style.transform += ' rotate(' + rotate + 'deg)';
+    chicken.style.transform += ` rotate(${rotate}deg)`;
   }
 });

@@ -86,6 +86,28 @@ body, html {
     transform: rotate(115deg);
 }
 
+.hat {
+    display: block;
+    position: absolute;
+    border-bottom: 2px solid;
+    width: 40px;
+    left: 5px;
+}
+
+.hat::before {
+    content: '';
+    display: block;
+    height: 15px;
+    width: 25px;
+    background-color: brown;
+    position: absolute;
+    top: -19px;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+    border: 2px solid black;
+    left: 5px;
+}
+
 .beak {
     position: absolute;
     top: 25%;
@@ -122,6 +144,21 @@ body, html {
     transform: rotate(-45deg);
     content: '';
     z-index: -1;
+}
+
+.moustache {
+    display: block;
+    position: absolute;
+    top: 30px;
+    left: -5px;
+    background-color: brown;
+    border: 2px solid black;
+    width: 20px;
+    height: 10px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 50px;
 }
 
 .eye {
@@ -248,7 +285,8 @@ body, html {
 .buttons {
     position: absolute;
     bottom: 25px;
-    left: 50%;
+    left: 550px;
+    margin: 0 auto;
     color: white;
     font-family: 'Comic Sans MS', cursive, sans-serif;
 }
@@ -260,6 +298,17 @@ body, html {
     border-radius: 5px;
     color: #cccccc;
     font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.mr-chicken {    
+    opacity: 0;
+    transition: opacity .5s;
+}
+
+.mrs-chicken {
+    display: block;
+    opacity: 1;
+    transition: opacity .5s;
 }
 
 @media (min-width: 768px) {}
