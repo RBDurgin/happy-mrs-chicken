@@ -18,7 +18,7 @@
     "eslint-plugin-react": "^7.14.3",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-dev-server": "^6.0.0"
   },
   "dependencies": {
     "simple-peer": "^9.4.0"
